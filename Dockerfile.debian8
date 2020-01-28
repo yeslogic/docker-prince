@@ -1,6 +1,6 @@
-ARG DEBIAN_VERSION
+ARG BASE_IMAGE
 
-FROM debian:${DEBIAN_VERSION}-slim
+FROM debian:${BASE_IMAGE}
 
 ARG PRINCE_VERSION
 ARG DEBIAN_VERSION
@@ -9,7 +9,8 @@ ARG DEB_FILE=prince_${PRINCE_VERSION}-1_debian${DEBIAN_VERSION}_amd64.deb
 RUN apt-get update && apt-get install --no-install-recommends -y \
       curl \
       ca-certificates \
-      fonts-tlwg-garuda-otf \
+      gdebi-core \
+      fonts-tlwg-garuda \
       fonts-lohit-orya \
       fonts-lohit-mlym \
       fonts-lohit-knda \
@@ -23,11 +24,11 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
       fonts-ipafont-mincho \
       fonts-arphic-uming \
       fonts-opensymbol \
-      fonts-liberation2 && \
+      fonts-liberation && \
     curl --proto '=https' --tlsv1.2 -O https://www.princexml.com/download/${DEB_FILE} && \
-    apt-get install -y ./${DEB_FILE} && \
+    gdebi ./${DEB_FILE} && \
     rm ${DEB_FILE} && \
-    apt-get purge -y curl ca-certificates && \
+    apt-get purge -y curl ca-certificates gdebi-core && \
     apt-get autoremove -y && apt-get clean
 
 ENTRYPOINT ["prince"]
