@@ -1,3 +1,4 @@
+DOCKER?=docker
 PRINCE_VERSION?=13.1
 
 all: debian debian-slim
@@ -7,7 +8,7 @@ debian: debian-8 debian-9 debian-10
 debian-slim: debian-8-slim debian-9-slim debian-10-slim
 
 debian-10: Dockerfile.debian
-	docker build \
+	$(DOCKER) build \
 	  -f $< \
 	  -t yeslogic/prince:$(PRINCE_VERSION)-$@ \
 	  --build-arg PRINCE_VERSION=$(PRINCE_VERSION) \
@@ -16,7 +17,7 @@ debian-10: Dockerfile.debian
 	  .
 
 debian-9: Dockerfile.debian
-	docker build \
+	$(DOCKER) build \
 	  -f $< \
 	  -t yeslogic/prince:$(PRINCE_VERSION)-$@ \
 	  --build-arg PRINCE_VERSION=$(PRINCE_VERSION) \
@@ -25,7 +26,7 @@ debian-9: Dockerfile.debian
 	  .
 
 debian-8: Dockerfile.debian8
-	docker build \
+	$(DOCKER) build \
 	  -f $< \
 	  -t yeslogic/prince:$(PRINCE_VERSION)-$@ \
 	  --build-arg PRINCE_VERSION=$(PRINCE_VERSION) \
@@ -34,7 +35,7 @@ debian-8: Dockerfile.debian8
 	  .
 
 debian-10-slim: Dockerfile.debian
-	docker build \
+	$(DOCKER) build \
 	  -f $< \
 	  -t yeslogic/prince:$(PRINCE_VERSION) \
 	  -t yeslogic/prince:$(PRINCE_VERSION)-$@ \
@@ -44,7 +45,7 @@ debian-10-slim: Dockerfile.debian
 	  .
 
 debian-9-slim: Dockerfile.debian
-	docker build \
+	$(DOCKER) build \
 	  -f $< \
 	  -t yeslogic/prince:$(PRINCE_VERSION)-$@ \
 	  --build-arg PRINCE_VERSION=$(PRINCE_VERSION) \
@@ -53,7 +54,7 @@ debian-9-slim: Dockerfile.debian
 	  .
 
 debian-8-slim: Dockerfile.debian8
-	docker build \
+	$(DOCKER) build \
 	  -f $< \
 	  -t yeslogic/prince:$(PRINCE_VERSION)-$@ \
 	  --build-arg PRINCE_VERSION=$(PRINCE_VERSION) \
@@ -61,3 +62,11 @@ debian-8-slim: Dockerfile.debian8
 	  --build-arg BASE_IMAGE=8-slim \
 	  .
 
+dockerhub: all
+	$(DOCKER) push yeslogic/prince:$(PRINCE_VERSION)
+	$(DOCKER) push yeslogic/prince:$(PRINCE_VERSION)-debian-10
+	$(DOCKER) push yeslogic/prince:$(PRINCE_VERSION)-debian-9
+	$(DOCKER) push yeslogic/prince:$(PRINCE_VERSION)-debian-8
+	$(DOCKER) push yeslogic/prince:$(PRINCE_VERSION)-debian-10-slim
+	$(DOCKER) push yeslogic/prince:$(PRINCE_VERSION)-debian-9-slim
+	$(DOCKER) push yeslogic/prince:$(PRINCE_VERSION)-debian-8-slim
