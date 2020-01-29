@@ -27,8 +27,9 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     curl --proto '=https' --tlsv1.2 -O https://www.princexml.com/download/${DEB_FILE} && \
     apt-get install -y ./${DEB_FILE} && \
     rm ${DEB_FILE} && \
-    apt-get purge -y curl ca-certificates && \
-    apt-get autoremove -y && apt-get clean
+    apt-get purge -y curl && \
+    apt-get autoremove -y && apt-get clean && \
+    ln -sf /etc/ssl/certs/ca-certificates.crt /usr/lib/prince/etc/curl-ca-bundle.crt
 
 ENTRYPOINT ["prince"]
 
