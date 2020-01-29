@@ -14,6 +14,12 @@ indicate the same image):
 * `yeslogic/prince:13.1-debian-9`
 * `yeslogic/prince:13.1-debian-8`
 
+Example:
+
+```shell
+docker run --rm -it -v $(pwd):/out yeslogic/prince:13.1 https://example.com/ -o /out/example.pdf
+```
+
 ## Building
 
 Build all:
