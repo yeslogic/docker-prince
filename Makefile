@@ -37,6 +37,7 @@ debian-8: Dockerfile.debian8
 debian-10-slim: Dockerfile.debian
 	$(DOCKER) build \
 	  -f $< \
+	  -t yeslogic/prince:latest \
 	  -t yeslogic/prince:$(PRINCE_VERSION) \
 	  -t yeslogic/prince:$(PRINCE_VERSION)-$@ \
 	  --build-arg PRINCE_VERSION=$(PRINCE_VERSION) \
@@ -63,6 +64,7 @@ debian-8-slim: Dockerfile.debian8
 	  .
 
 dockerhub: all
+	$(DOCKER) push yeslogic/prince:latest
 	$(DOCKER) push yeslogic/prince:$(PRINCE_VERSION)
 	$(DOCKER) push yeslogic/prince:$(PRINCE_VERSION)-debian-10
 	$(DOCKER) push yeslogic/prince:$(PRINCE_VERSION)-debian-9
