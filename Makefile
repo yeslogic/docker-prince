@@ -1,5 +1,5 @@
 DOCKER?=docker
-PRINCE_VERSION?=14.1
+PRINCE_VERSION?=14.2
 
 all: debian debian-slim
 
