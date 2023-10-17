@@ -7,12 +7,12 @@ Dockerfiles for building Docker images with [Prince] installed.
 Images are available with the following tags (multiple tags on the same line
 indicate the same image):
 
-* `yeslogic/prince:latest` `yeslogic/prince:15.2` `yeslogic/prince:15.2-debian-11-slim`
+* `yeslogic/prince:latest` `yeslogic/prince:15.2` `yeslogic/prince:15.2-debian-12-slim`
+* `yeslogic/prince:15.2-debian-11-slim`
 * `yeslogic/prince:15.2-debian-10-slim`
-* `yeslogic/prince:15.2-debian-9-slim`
-* `yeslogic/prince:15.2-debian-10`
+* `yeslogic/prince:15.2-debian-12`
 * `yeslogic/prince:15.2-debian-11`
-* `yeslogic/prince:15.2-debian-9`
+* `yeslogic/prince:15.2-debian-10`
 
 Example:
 
@@ -28,16 +28,16 @@ Build all:
 
 Build a specific image:
 
-    make debian-11
+    make debian-12
 
 Available targets:
 
-* `debian-9`
 * `debian-10`
 * `debian-11`
-* `debian-9-slim`
+* `debian-12`
 * `debian-10-slim`
 * `debian-11-slim`
+* `debian-12-slim`
 
 ## Publishing
 
