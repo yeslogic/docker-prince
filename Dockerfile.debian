@@ -9,6 +9,9 @@ ARG DEB_FILE=prince_${PRINCE_VERSION}-1_debian${DEBIAN_VERSION}_amd64.deb
 RUN apt-get update && apt-get install --no-install-recommends -y \
       curl \
       ca-certificates \
+      fonts-noto \
+      fonts-khmeros-core \
+      fonts-lklug-sinhala \
       fonts-tlwg-garuda-otf \
       fonts-lohit-orya \
       fonts-lohit-mlym \
