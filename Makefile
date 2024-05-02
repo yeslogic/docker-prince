@@ -1,5 +1,8 @@
 DOCKER?=docker
+DOCKER_DEFAULT_PLATFORM?=linux/amd64
 PRINCE_VERSION?=15.3
+
+export DOCKER_DEFAULT_PLATFORM
 
 all: debian debian-slim
 
