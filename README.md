@@ -9,10 +9,8 @@ indicate the same image):
 
 * `yeslogic/prince:latest` `yeslogic/prince:16` `yeslogic/prince:16-debian-12-slim`
 * `yeslogic/prince:16-debian-11-slim`
-* `yeslogic/prince:16-debian-10-slim`
 * `yeslogic/prince:16-debian-12`
 * `yeslogic/prince:16-debian-11`
-* `yeslogic/prince:16-debian-10`
 
 Example:
 
@@ -32,10 +30,8 @@ Build a specific image:
 
 Available targets:
 
-* `debian-10`
 * `debian-11`
 * `debian-12`
-* `debian-10-slim`
 * `debian-11-slim`
 * `debian-12-slim`
 
