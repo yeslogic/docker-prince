@@ -1,10 +1,12 @@
-ARG BASE_IMAGE
+ARG BASE_IMAGE=12
 
 FROM debian:${BASE_IMAGE}
 
 ARG PRINCE_VERSION
 ARG DEBIAN_VERSION
-ARG DEB_FILE=prince_${PRINCE_VERSION}-1_debian${DEBIAN_VERSION}_amd64.deb
+# This argument is populated automatically by Docker
+ARG TARGETARCH
+ARG DEB_FILE=prince_${PRINCE_VERSION}-1_debian${DEBIAN_VERSION}_${TARGETARCH}.deb
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
       curl \

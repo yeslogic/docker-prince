@@ -1,5 +1,6 @@
 DOCKER?=docker
 DOCKER_DEFAULT_PLATFORM?=linux/amd64
+BUILD_PLATFORMS?=linux/amd64,linux/arm64
 PRINCE_VERSION?=16
 
 export DOCKER_DEFAULT_PLATFORM
@@ -11,8 +12,9 @@ debian: debian-11 debian-12
 debian-slim: debian-11-slim debian-12-slim
 
 debian-12: Dockerfile.debian
-	$(DOCKER) build \
+	$(DOCKER) buildx build \
 	  -f $< \
+	  --platform $(BUILD_PLATFORMS) \
 	  -t yeslogic/prince:$(PRINCE_VERSION)-$@ \
 	  --build-arg PRINCE_VERSION=$(PRINCE_VERSION) \
 	  --build-arg DEBIAN_VERSION=12 \
@@ -20,8 +22,9 @@ debian-12: Dockerfile.debian
 	  .
 
 debian-11: Dockerfile.debian
-	$(DOCKER) build \
+	$(DOCKER) buildx build \
 	  -f $< \
+	  --platform $(BUILD_PLATFORMS) \
 	  -t yeslogic/prince:$(PRINCE_VERSION)-$@ \
 	  --build-arg PRINCE_VERSION=$(PRINCE_VERSION) \
 	  --build-arg DEBIAN_VERSION=11 \
@@ -29,8 +32,9 @@ debian-11: Dockerfile.debian
 	  .
 
 debian-12-slim: Dockerfile.debian
-	$(DOCKER) build \
+	$(DOCKER) buildx build \
 	  -f $< \
+	  --platform $(BUILD_PLATFORMS) \
 	  -t yeslogic/prince:latest \
 	  -t yeslogic/prince:$(PRINCE_VERSION) \
 	  -t yeslogic/prince:$(PRINCE_VERSION)-$@ \
@@ -40,8 +44,9 @@ debian-12-slim: Dockerfile.debian
 	  .
 
 debian-11-slim: Dockerfile.debian
-	$(DOCKER) build \
+	$(DOCKER) buildx build \
 	  -f $< \
+	  --platform $(BUILD_PLATFORMS) \
 	  -t yeslogic/prince:$(PRINCE_VERSION)-$@ \
 	  --build-arg PRINCE_VERSION=$(PRINCE_VERSION) \
 	  --build-arg DEBIAN_VERSION=11 \

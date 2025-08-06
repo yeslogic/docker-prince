@@ -20,15 +20,26 @@ docker run --rm -it -v $(pwd):/out yeslogic/prince:16 https://example.com/ -o /o
 
 ## Building
 
-Build all:
+By default the Makefile will build a [multi-platform] image for amd64 and arm64. On
+systems using Docker Desktop, this should work automatically. On Linux hosts you
+need to have `binfmt_misc` set up to run foreign binaries with QEMU. On Arch Linux
+I did this by installing the `qemu-user-static` and `qemu-user-static-binfmt` packages.
+
+[multi-platform]: https://docs.docker.com/build/building/multi-platform/
+
+### Build all
 
     make
 
-Build a specific image:
+### Build a specific image
 
     make debian-12
 
-Available targets:
+### Build for a single platform
+
+    make debian-12-slim BUILD_PLATFORMS=linux/amd64
+
+### Available targets
 
 * `debian-11`
 * `debian-12`
