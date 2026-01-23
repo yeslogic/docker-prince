@@ -7,15 +7,15 @@ Dockerfiles for building Docker images with [Prince] installed.
 Images are available with the following tags (multiple tags on the same line
 indicate the same image):
 
-* `yeslogic/prince:latest` `yeslogic/prince:16.1` `yeslogic/prince:16.1-debian-12-slim`
-* `yeslogic/prince:16.1-debian-11-slim`
-* `yeslogic/prince:16.1-debian-12`
-* `yeslogic/prince:16.1-debian-11`
+* `yeslogic/prince:latest` `yeslogic/prince:16.2` `yeslogic/prince:16.2-debian-12-slim`
+* `yeslogic/prince:16.2-debian-11-slim`
+* `yeslogic/prince:16.2-debian-12`
+* `yeslogic/prince:16.2-debian-11`
 
 Example:
 
 ```shell
-docker run --rm -it -v $(pwd):/out yeslogic/prince:16.1 https://example.com/ -o /out/example.pdf
+docker run --rm -it -v $(pwd):/out yeslogic/prince:16.2 https://example.com/ -o /out/example.pdf
 ```
 
 ## Building
